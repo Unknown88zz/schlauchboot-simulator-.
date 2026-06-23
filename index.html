@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schlauchboot Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="main-menu">
+        
+        <div class="matrix-rain">
+            <span style="left: 15%; animation-delay: 0s;">!</span>
+            <span style="left: 25%; animation-delay: 2s;">~</span>
+            <span style="left: 40%; animation-delay: 1s;">!</span>
+            <span style="left: 55%; animation-delay: 3s;">~</span>
+            <span style="left: 70%; animation-delay: 0.5s;">!</span>
+            <span style="left: 85%; animation-delay: 2.5s;">!</span>
+        </div>
+
+        <div class="menu-content" id="panel-main">
+            <h1>Schlauchboot Simulator</h1>
+            <div class="button-group">
+                <button class="menu-btn">Spiel Starten</button>
+                <button class="menu-btn" onclick="toggleMenu('panel-settings', 'panel-main')">Einstellungen</button>
+                <button class="menu-btn" onclick="window.open('https://www.pornhub.com', '_blank');">Beenden</button>
+            </div>
+        </div>
+
+        <div class="menu-content" id="panel-settings" style="display: none;">
+            <h1>Einstellungen</h1>
+            
+            <div class="settings-box">
+                <label for="volume-slider">Lautstärke: <span id="volume-value">44</span></label>
+                <input type="range" id="volume-slider" min="1" max="88" value="44" oninput="updateVolume(this.value)">
+            </div>
+
+            <div class="button-group" style="margin-top: 30px;">
+                <button class="menu-btn" onclick="toggleMenu('panel-main', 'panel-settings')">Zurück</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const volumeSound = new Audio('sound.mp3');
+        
+
+        volumeSound.volume = 44 / 88;
+
+
+        function toggleMenu(showId, hideId) {
+            document.getElementById(hideId).style.display = 'none';
+            document.getElementById(showId).style.display = 'block';
+        }
+
+
+        function updateVolume(val) {
+
+            document.getElementById('volume-value').innerText = val;
+            
+
+            volumeSound.volume = val / 88;
+            
+s
+            volumeSound.currentTime = 0;
+            volumeSound.play().catch(error => {
+                console.log("Audio-Wiedergabe blockiert oder Datei fehlt:", error);
+            });
+        }
+    </script>
+</body>
+</html>
